@@ -15,7 +15,7 @@ I have worked on a range of projects, focusing on building efficient, scalable w
 
 ## Contact
 
-- **Email**: your-email@example.com
+- **Email**: alikhanmohammed342@gmail.com
 - **LinkedIn**: [Your LinkedIn Profile](www.linkedin.com/in/mohammed-ali-khan-24b81a278)
 - **GitHub**: [Your GitHub Profile](https://github.com/saqeebalimk/M4S)
 
