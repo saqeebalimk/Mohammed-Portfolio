@@ -29,40 +29,136 @@
             <a href="#contact" class="text-white hover:text-blue-400 transition duration-300">Contact</a>
         </div>
 
- <!-- Mobile Hamburger Menu -->
-<div class="lg:hidden relative">
-    <button id="hamburger" class="text-white text-3xl focus:outline-none">
-        &#9776;
-    </button>
-</div>
+        <!-- Mobile Hamburger Menu -->
+        <div class="lg:hidden">
+            <button id="hamburger" class="text-white text-3xl focus:outline-none">
+                &#9776;
+            </button>
+        </div>
+    </div>
 
-<!-- Mobile Dropdown Menu (Initially Hidden) -->
-<div id="mobileMenu" class="lg:hidden absolute top-12 left-0 w-full bg-gray-900 text-white p-4 shadow-lg hidden transition-all duration-300 ease-in-out">
-    <a href="#home" class="block py-2">Home</a>
-    <a href="#about" class="block py-2">About</a>
-    <a href="#projects" class="block py-2">Projects</a>
-    <a href="#certifications" class="block py-2">Certifications</a>
-    <a href="#contact" class="block py-2">Contact</a>
-</div>
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="lg:hidden bg-gray-900 text-white p-4 hidden">
+        <a href="#home" class="block py-2">Home</a>
+        <a href="#about" class="block py-2">About</a>
+        <a href="#projects" class="block py-2">Projects</a>
+        <a href="#certifications" class="block py-2">Certifications</a>
+        <a href="#contact" class="block py-2">Contact</a>
+    </div>
+</nav>
 
-<!-- JavaScript for Hamburger Menu -->
+<!-- Hero Section -->
+<header class="relative flex items-center justify-center min-h-screen text-center text-white">
+    <!-- Animated Background -->
+    <div class="absolute inset-0 bg-gradient-to-r from-blue-900 via-purple-700 to-blue-900 animate-gradientMove"></div>
+    
+    <div class="relative z-10 container mx-auto px-6">
+        <h1 class="text-5xl font-extrabold mb-4">
+            Hello, I'm a <span class="text-blue-400" id="typingText">Software Developer</span>
+        </h1>
+        <p class="text-xl max-w-2xl mx-auto">
+            "Transforming innovative ideas into seamless, engaging, and impactful digital experiences through cutting-edge development."
+        </p>
+        <a href="#projects" class="mt-6 inline-block bg-blue-500 px-6 py-3 rounded-lg text-white font-semibold text-lg shadow-lg hover:bg-blue-600 hover:shadow-xl transition duration-300 transform hover:scale-105">
+            View My Work
+        </a>
+    </div>
+</header>
+
+<!-- JavaScript for Mobile Menu & Typing Effect -->
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const hamburger = document.getElementById("hamburger");
-        const mobileMenu = document.getElementById("mobileMenu");
-
-        hamburger.addEventListener("click", function (event) {
-            mobileMenu.classList.toggle("hidden");
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener("click", function (event) {
-            if (!hamburger.contains(event.target) && !mobileMenu.contains(event.target)) {
-                mobileMenu.classList.add("hidden");
-            }
-        });
+    document.getElementById('hamburger').addEventListener('click', function () {
+        document.getElementById('mobileMenu').classList.toggle('hidden');
     });
+
+    // Typing Effect
+    const words = ["Software Developer", "Full Stack Engineer", "Web3 Enthusiast"];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let typingText = document.getElementById("typingText");
+
+    function typeEffect() {
+        if (charIndex < words[wordIndex].length) {
+            typingText.innerHTML = words[wordIndex].substring(0, charIndex + 1);
+            charIndex++;
+            setTimeout(typeEffect, 150);
+        } else {
+            setTimeout(eraseEffect, 1000);
+        }
+    }
+
+    function eraseEffect() {
+        if (charIndex > 0) {
+            typingText.innerHTML = words[wordIndex].substring(0, charIndex - 1);
+            charIndex--;
+            setTimeout(eraseEffect, 100);
+        } else {
+            wordIndex = (wordIndex + 1) % words.length;
+            setTimeout(typeEffect, 500);
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", typeEffect);
 </script>
+
+<style>
+    /* Gradient Background Animation */
+    @keyframes gradientMove {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    .animate-gradientMove {
+        background-size: 200% 200%;
+        animation: gradientMove 8s infinite alternate;
+    }
+</style>
+
+
+    <!-- Mobile Hamburger Menu -->
+    <div class="lg:hidden relative">
+        <button id="hamburger">&#9776;</button>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <!-- JavaScript for Hamburger Menu -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const hamburger = document.getElementById("hamburger");
+            const mobileMenu = document.getElementById("mobileMenu");
+
+            // Toggle menu visibility on click
+            hamburger.addEventListener("click", function (event) {
+                event.stopPropagation(); // Prevent immediate closing
+                if (mobileMenu.style.display === "block") {
+                    mobileMenu.style.display = "none";
+                } else {
+                    mobileMenu.style.display = "block";
+                }
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener("click", function (event) {
+                if (!hamburger.contains(event.target) && !mobileMenu.contains(event.target)) {
+                    mobileMenu.style.display = "none";
+                }
+            });
+
+            // Prevent menu from closing when clicking inside
+            mobileMenu.addEventListener("click", function (event) {
+                event.stopPropagation();
+            });
+        });
+    </script>
+
 
 </header>
 <style>
