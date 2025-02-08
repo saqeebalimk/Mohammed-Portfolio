@@ -65,43 +65,6 @@
 </script>
 
 </header>
-
-<!-- JavaScript for Mobile Menu & Typing Effect -->
-<script>
-    document.getElementById('hamburger').addEventListener('click', function () {
-        document.getElementById('mobileMenu').classList.toggle('hidden');
-    });
-
-    // Typing Effect
-    const words = ["Software Developer", "Full Stack Engineer", "Web3 Enthusiast"];
-    let wordIndex = 0;
-    let charIndex = 0;
-    let typingText = document.getElementById("typingText");
-
-    function typeEffect() {
-        if (charIndex < words[wordIndex].length) {
-            typingText.innerHTML = words[wordIndex].substring(0, charIndex + 1);
-            charIndex++;
-            setTimeout(typeEffect, 150);
-        } else {
-            setTimeout(eraseEffect, 1000);
-        }
-    }
-
-    function eraseEffect() {
-        if (charIndex > 0) {
-            typingText.innerHTML = words[wordIndex].substring(0, charIndex - 1);
-            charIndex--;
-            setTimeout(eraseEffect, 100);
-        } else {
-            wordIndex = (wordIndex + 1) % words.length;
-            setTimeout(typeEffect, 500);
-        }
-    }
-
-    document.addEventListener("DOMContentLoaded", typeEffect);
-</script>
-
 <style>
     /* Gradient Background Animation */
     @keyframes gradientMove {
@@ -379,33 +342,6 @@
     });
 </script>
 
-
-<!-- Certificate Modal -->
-<div id="certificateModal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center hidden">
-    <div class="relative">
-        <button onclick="closeModal()" class="absolute top-2 right-2 bg-white text-black px-3 py-1 rounded-full text-xl font-bold">✕</button>
-        <img id="modalImage" src="" alt="Certificate" class="max-w-full max-h-[90vh] rounded-lg shadow-2xl">
-    </div>
-</div>
-
-<!-- JavaScript for Modal -->
-<script>
-    function openModal(img) {
-        document.getElementById("modalImage").src = img.src;
-        document.getElementById("certificateModal").classList.remove("hidden");
-    }
-
-    function closeModal() {
-        document.getElementById("certificateModal").classList.add("hidden");
-    }
-
-    // Close modal when clicking outside the image
-    document.getElementById("certificateModal").addEventListener("click", function(event) {
-        if (event.target === this) {
-            closeModal();
-        }
-    });
-</script>
 
 
     <!-- Modal (Lightbox for Certificates) -->
